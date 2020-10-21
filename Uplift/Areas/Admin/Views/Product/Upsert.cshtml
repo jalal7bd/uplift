@@ -1,0 +1,220 @@
+﻿
+@model Uplift.Models.ViewModels.ProductVM
+@{
+    var title = "Create Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Product.Id != 0)
+        {
+            <input type="hidden" asp-for="Product.Id" />
+            title = "Edit Product";
+        }
+        <div class="col-12">
+            <h2 class="text-primary">@title</h2>
+            <br />
+        </div>
+        <div class="col-10">
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.Name"></label>
+                    <input asp-for="Product.Name" class="form-control form-control-sm" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.ArticleNo"></label>
+                    <input asp-for="Product.ArticleNo" id="chkarticleno" class="form-control" onclick="articleCheck()" />
+                    @*<input asp-for="Product.ArticleNo" class="form-control"/>*@
+                    <span asp-validation-for="Product.ArticleNo" class="text-danger" id="Status"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.ManufactureCode"></label>
+                    <input asp-for="Product.ManufactureCode" class="form-control" />
+                    <span asp-validation-for="Product.ManufactureCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.Barcode"></label>
+                    <input asp-for="Product.Barcode" class="form-control" />
+                    <span asp-validation-for="Product.Barcode" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.Weight"></label>
+                    <input asp-for="Product.Weight" class="form-control" />
+                    <span asp-validation-for="Product.Weight" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.Quantity"></label>
+                    <input asp-for="Product.Quantity" class="form-control" />
+                    <span asp-validation-for="Product.Quantity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Description"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Description" class="form-control" />
+                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.ImageUrl"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.B2CPrice"></label>
+                    <input asp-for="Product.B2CPrice" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Product.B2CPrice" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.B2BPrice"></label>
+                    <input asp-for="Product.B2BPrice" class="form-control" />
+                    <span asp-validation-for="Product.B2BPrice" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.PremiumPrice"></label>
+                    <input asp-for="Product.PremiumPrice" class="form-control" />
+                    <span asp-validation-for="Product.PremiumPrice" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.DistributorPrice"></label>
+                    <input asp-for="Product.DistributorPrice" class="form-control" />
+                    <span asp-validation-for="Product.DistributorPrice" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.PurchasePrice"></label>
+                    <input asp-for="Product.PurchasePrice" class="form-control" />
+                    <span asp-validation-for="Product.PurchasePrice" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.PurchasePriceA"></label>
+                    <input asp-for="Product.PurchasePriceA" class="form-control" />
+                    <span asp-validation-for="Product.PurchasePriceA" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.PurchasePriceB"></label>
+                    <input asp-for="Product.PurchasePriceB" class="form-control" />
+                    <span asp-validation-for="Product.PurchasePriceB" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.PurchasePriceC"></label>
+                    <input asp-for="Product.PurchasePriceC" class="form-control" />
+                    <span asp-validation-for="Product.PurchasePriceC" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.StockLimit"></label>
+                    <input asp-for="Product.StockLimit" class="form-control" />
+                    <span asp-validation-for="Product.StockLimit" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.ReorderQuantity"></label>
+                    <input asp-for="Product.ReorderQuantity" class="form-control" />
+                    <span asp-validation-for="Product.ReorderQuantity" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Product.Note"></label>
+                    <input asp-for="Product.Note" class="form-control" />
+                    <span asp-validation-for="Product.Note" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label asp-for="Product.CategoryId"></label>
+                    <select asp-for="Product.CategoryId" class="form-control" asp-items="Model.CategoryList"><option>--Please Select Category--</option></select>
+                    @*@Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList, "-Please select a Category-", new { @class = "form-control" })*@
+                </div>
+                <div class="col">
+                    <label asp-for="Product.FrequencyId"></label>
+                    <select asp-for="Product.FrequencyId" class="form-control" asp-items="Model.FrequencyList"><option>--Please Select Frequency--</option></select>
+                    @*@Html.DropDownListFor(m => m.Product.FrequencyId, Model.FrequencyList, "-Please select a Frequency-", new { @class = "form-control" })*@
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if (Model.Product.Id != 0)
+                    {
+                        <partial name="_EditAndBackToListButton" model="Model.Product.Id" />
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.Product.Id != 0)
+        {
+            <div class="col-3">
+                <img src="@Model.Product.ImageUrl" style="border-radius:5px; width:100%; border:1px solid #bbb9b9" />
+            </div>
+        }
+    </div>
+</form>
+
+@section Scripts{
+    @*<script src="https://cdn.tiny.cloud/1/emgnjusgl8z7g0oombrbz37ftdepjok4448qn71ck4hl7d3g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+            //plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            //toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+            //toolbar_mode: 'floating',
+            //tinycomments_mode: 'embedded',
+            //tinycomments_author: 'Author name',
+        });*@
+
+    <script>
+    function validateInput() {
+    if (document.getElementById("uploadBox ").value==""){
+    swal("Error", "Please select an Image", "error")
+    return false;
+    }
+    return true;
+    }
+    $(document).ready(function () {
+    if (document.getElementById('txtPrice').value == "0") {
+    document.getElementById('txtPrice').value == '';
+    }
+    });
+    // for duplicate check
+    function articleCheck() {
+            $("#Status").html("Checking..");
+            $.post("@Url.Action("CheckDuplicateArticleNo", "Product")",
+                {
+                    articleno: $("#chkarticleno").val()
+                },
+            function (data) {
+                if (data == 0) {
+                    $("#Status").html('<p style="color:green">Availabe! you can take it.</p>');
+                    $("#Status").css("border-color", "Green");
+                }
+                else {
+                    $("#Status").html('<p style="color:Red">This Article is already exist..Try another article</p>');
+                    $("#Status").css("border-color", "Red");
+                }
+                })
+        }
+    </script>
+}

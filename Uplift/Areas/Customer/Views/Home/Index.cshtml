@@ -1,0 +1,44 @@
+﻿@model Uplift.Models.ViewModels.HomeVM
+@foreach (var category in Model.CategoryList.OrderBy(o => o.DisplayOrder))
+{
+    @if (Model.ProductList.Where(x => x.CategoryId == category.Id).Count() > 0)
+    {
+        <div class="row container pb-3 backgroundWhite">
+            <div class="col-12">
+                <div class="row">
+                    <h2 class="text-success"><b>@category.Name</b></h2>
+
+                    <div class="col-12">
+                        <div class="row my-3">
+                            @foreach (var product in Model.ProductList.Where(c => c.CategoryId == category.Id))
+                            {
+                                <div class="col-lg-4 col-xl-3 col-md-6 pb-4">
+                                    <div class="card" style="border:2px solid #43ac6a;border-radius:5px;background:url('/images/dust_scratches.png');">
+                                        <div class="pl-3 pt-1 text-center" style="height:50px;overflow:hidden">
+                                            <p class="card-title text-primary"><b>@product.Name</b></p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="pl-1 text-muted"> Price per Product</div>
+                                            <div class="pr-1 text-danger h5">$@product.B2CPrice</div>
+                                        </div>
+                                        @if (product.ImageUrl != null)
+                                        {
+                                            <img src="@product.ImageUrl" alt="product image coming soon" class="card-img-top p-2 rounded" style="height:250px"/>
+
+                                        }
+                                        else
+                                        {
+                                            <img src="/images/ImgeComing.png" alt="product image coming soon" class="card-img-top p-2 rounded" style="height:250px" />
+                                        }
+                                        <div class="text-muted text-center pb-2">@product.Frequency.Name</div>
+                                        <a asp-action="Details" class="btn btn-success" style="border-radius:2px;" asp-route-id="@product.Id">Details</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
