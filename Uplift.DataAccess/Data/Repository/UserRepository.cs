@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
+﻿using System;
 using System.Linq;
-using System.Text;
 using Uplift.DataAccess.Data.Repository.IRepository;
 using Uplift.Models;
 
@@ -30,5 +26,4 @@ namespace Uplift.DataAccess.Data.Repository
             _db.SaveChanges();
         }
     }
-
 }
