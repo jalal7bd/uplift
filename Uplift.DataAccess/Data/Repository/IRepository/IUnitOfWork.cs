@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Uplift.DataAccess.Data.Repository.IRepository
 {
-   public interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork:IDisposable
     {
         ICategoryRepository Category { get; }
         IFrequencyRepository Frequency { get; }
@@ -12,7 +10,6 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
         IOrderHeaderRepository OrderHeader{ get; }
         IOrderDetailsRepository OrderDetails { get; }
         IUserRepository User { get; }
-
         void Save();
     }
 }
