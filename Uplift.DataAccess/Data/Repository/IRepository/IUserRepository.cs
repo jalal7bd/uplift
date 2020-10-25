@@ -10,6 +10,5 @@ namespace Uplift.DataAccess.Data.Repository.IRepository
     {
         void LockUser(string userId);
         void UnLockUser(string userId);
-
     }
 }

@@ -30,6 +30,7 @@ namespace Uplift.DataAccess.Data.Repository
             UserFromDb.LockoutEnd = DateTime.Now;
             _db.SaveChanges();
         }
+
     }
 
 }

@@ -31,7 +31,6 @@ namespace Uplift.DataAccess.Data.Repository
         {
             _db.Dispose();
         }
-
         public void Save()
         {
             _db.SaveChanges();

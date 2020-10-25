@@ -23,5 +23,6 @@ namespace Uplift.Areas.Admin.Controllers
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             return View(_unitOfWork.User.GetAll(u=>u.Id!=claims.Value));
         }
+
     }
 }
