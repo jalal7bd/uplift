@@ -23,14 +23,12 @@ namespace Uplift.DataAccess.Data.Repository
             UserFromDb.LockoutEnd = DateTime.Now.AddYears(1000);
             _db.SaveChanges();
         }
-
         public void UnLockUser(string userId)
         {
             var UserFromDb = _db.ApplicationUser.FirstOrDefault(u => u.Id == userId);
             UserFromDb.LockoutEnd = DateTime.Now;
             _db.SaveChanges();
         }
-
     }
 
 }
