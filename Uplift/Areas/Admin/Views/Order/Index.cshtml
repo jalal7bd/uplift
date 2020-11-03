@@ -1,0 +1,71 @@
+﻿@using Uplift.Utility
+@{ 
+    var status = Context.Request.Query["status"];
+    var approved = "text-success";
+    var pending = "text-warning";
+    var rejected = "text-danger";
+    var all = "text-info";
+    if (status=="approved")
+    {
+        approved = "bg-dark text-white";
+    }
+    else
+    {
+        if (status=="pending")
+        {
+            pending = "bg-dark text-white";
+        }
+        else if (status == "rejected")
+        {
+            rejected = "bg-dark text-white";
+        }
+        else
+        {
+            all= "bg-dark text-white";
+        }
+    }
+}
+<br />
+<div class="border backgroundWhite p-3">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="p-2">
+            <h2 >Order's List</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none" asp-controller="Order" asp-route-status="pending" asp-action="Index">
+                    <li class="list-group-item @pending ">Pending</li>
+                </a>
+                <a style="text-decoration:none" asp-controller="Order" asp-route-status="approved" asp-action="Index">
+                    <li class="list-group-item @approved">Approved</li>
+                </a>
+                <a style="text-decoration:none" asp-controller="Order" asp-route-status="rejected" asp-action="Index">
+                    <li class="list-group-item @rejected">Rejected</li>
+                </a>
+                <a style="text-decoration:none" asp-controller="Order" asp-route-status="all" asp-action="Index">
+                    <li class="list-group-item @all">All</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="table">
+        <table id="tblData" class="table table-bordered hover" style="width: 100%; background: #F5F5F5;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Count</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Orders.js"></script>
+}

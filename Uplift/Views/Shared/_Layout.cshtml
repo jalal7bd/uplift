@@ -19,7 +19,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        @*<nav class="navbar navbar-expand-lg navbar-dark bg-primary">*@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Sara</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -31,18 +32,28 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Content Management</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
+                    @if (User.IsInRole(SD.Manager) || User.IsInRole(SD.Admin))
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Content Management</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Frequency" asp-action="Index">Frequency</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="WebImage" asp-action="Index">Web Image</a>
+                                @if (User.IsInRole(SD.Admin))
+                                {
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
+                                }
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
+                            </div>
+                        </li>
+                    }
+
+                    @*<li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+                    </li>*@
                     @if (HttpContextAccessor.HttpContext.Session.GetObject<List<int>>(SD.SessionCart) != null)
                     {
                         <li style="color:white">
@@ -75,7 +86,8 @@
     <br />
     <footer class="border footer text-muted my-0">
         <div class="container">
-            &copy; 2020 - Sara IT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            @*&copy; 2020 - Sara IT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+            &copy; 2020 - Sara IT -Thanking by Sara Naomi
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

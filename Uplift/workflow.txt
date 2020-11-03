@@ -1,0 +1,12 @@
+﻿check telia volume: https://mobil.tewss.telia.se/redirect/redirectBuyPage.do 
+1. Create Model Class
+2. initialize Dbset on ApplicationDbContext
+3.add-migraion anyname
+4.upadte-database
+5.Create IRepository Interface with customs method
+6.Create Repository Class for implementing method
+7.initialize iRepository to IUnitOfWork interface  
+8.initialize Repository to UnitOfWork Class
+9.Add Controller with Following Action
+10.Add View
+11.add Js
